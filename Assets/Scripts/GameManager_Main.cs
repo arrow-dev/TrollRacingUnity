@@ -19,6 +19,7 @@ public class GameManager_Main : MonoBehaviour
     private Text TxtJoe;
     private Text TxtBob;
     private Text TxtAl;
+    private Text TxtAlert;
     private Button BetButton;
     private Dropdown BetAmount;
     private Dropdown BetRacerNum;
@@ -28,6 +29,7 @@ public class GameManager_Main : MonoBehaviour
     private GameObject Winner;
     private GameObject FinishLine;
     private int MinBet;
+
     //Punters
     private List<Punter> Punters; 
     //Racers
@@ -59,6 +61,7 @@ public class GameManager_Main : MonoBehaviour
         TxtJoe = GameObject.Find("txtJoe").GetComponent<Text>();
         TxtBob = GameObject.Find("txtBob").GetComponent<Text>();
         TxtAl = GameObject.Find("txtAl").GetComponent<Text>();
+        TxtAlert = GameObject.Find("TextAlert").GetComponent<Text>();
         BetButton = GameObject.Find("btnPlaceBet").GetComponent<Button>();
         BetAmount = GameObject.Find("DropdownBet").GetComponent<Dropdown>();
         BetRacerNum = GameObject.Find("DropdownRacerNum").GetComponent<Dropdown>();
@@ -96,6 +99,7 @@ public class GameManager_Main : MonoBehaviour
         ToggleJoe.onValueChanged.AddListener(SetupBet);
         ToggleBob.onValueChanged.AddListener(SetupBet);
         ToggleAl.onValueChanged.AddListener(SetupBet);
+        TxtAlert.enabled = false;
     }
 
     public void StartRace()
@@ -116,7 +120,7 @@ public class GameManager_Main : MonoBehaviour
         }
         else
         {
-            print("All Punters must place a bet");
+            ShowAlertDialog("All Punters must place a bet");
         }
 
     }
@@ -152,26 +156,33 @@ public class GameManager_Main : MonoBehaviour
 
     public void BetClick()
     {
-        var activeToggle = PunterToggles.ActiveToggles().First();
-        var betAmount = int.Parse(BetAmount.options[BetAmount.value].text);
-        var racer = int.Parse(BetRacerNum.options[BetRacerNum.value].text)-1;
-
-        switch (activeToggle.name)
+        if (PunterToggles.AnyTogglesOn())
         {
-            case "toggleJoe":
-                Punters[0].PlaceBet(betAmount,Racers[racer].TrollGameObject);
-                Punters[0].UpdateLabels();
-                break;
-            case "toggleBob":
-                Punters[1].PlaceBet(betAmount, Racers[racer].TrollGameObject);
-                Punters[1].UpdateLabels();
-                break;
-            case "toggleAl":
-                Punters[2].PlaceBet(betAmount, Racers[racer].TrollGameObject);
-                Punters[2].UpdateLabels();
-                break;
-            default:
-                break;
+            var activeToggle = PunterToggles.ActiveToggles().First();
+            var betAmount = int.Parse(BetAmount.options[BetAmount.value].text);
+            var racer = int.Parse(BetRacerNum.options[BetRacerNum.value].text) - 1;
+
+            switch (activeToggle.name)
+            {
+                case "toggleJoe":
+                    Punters[0].PlaceBet(betAmount, Racers[racer].TrollGameObject);
+                    Punters[0].UpdateLabels();
+                    break;
+                case "toggleBob":
+                    Punters[1].PlaceBet(betAmount, Racers[racer].TrollGameObject);
+                    Punters[1].UpdateLabels();
+                    break;
+                case "toggleAl":
+                    Punters[2].PlaceBet(betAmount, Racers[racer].TrollGameObject);
+                    Punters[2].UpdateLabels();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            ShowAlertDialog("You must select a Punter");
         }
     }
 
@@ -207,6 +218,10 @@ public class GameManager_Main : MonoBehaviour
                 BetAmount.value = 0;
                 BetAmount.captionText.text = BetAmount.options[0].text;
             }
+            else
+            {
+                ShowAlertDialog("This Punter is busted!");
+            }
         }
         
     }
@@ -214,5 +229,17 @@ public class GameManager_Main : MonoBehaviour
     public void ClearBetAmounts()
     {
         BetAmount.options.Clear();
+    }
+
+    public void ShowAlertDialog(string message)
+    {
+        TxtAlert.enabled = true;
+        TxtAlert.text = message;
+        Invoke("HideAlertDialog", 3);
+    }
+
+    public void HideAlertDialog()
+    {
+        TxtAlert.enabled = false;
     }
 }

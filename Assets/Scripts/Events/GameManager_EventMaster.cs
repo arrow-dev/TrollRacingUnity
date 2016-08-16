@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using JetBrains.Annotations;
-using UnityEngine.Networking;
 
+//This is all of my Events that can be called or subscribed to.
 public class GameManager_EventMaster : MonoBehaviour
 {
     public GameObject WinnerGameObject; 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+
+//This script is attached to my finishline mesh and fires the finish race event in the event master script when another gameobjects mesh collides with it.
 public class FinishRace : MonoBehaviour {
     GameManager_EventMaster eventScript;
 

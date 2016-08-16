@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.5f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -76,18 +74,17 @@
     <Compile Include="Assets\Scripts\Classes\Punters\Bob.cs" />
     <Compile Include="Assets\Scripts\Classes\Punters\Joe.cs" />
     <Compile Include="Assets\Scripts\Classes\Punters\Punter.cs" />
+    <Compile Include="Assets\Scripts\Classes\Punters\PunterFactory.cs" />
     <Compile Include="Assets\Scripts\Classes\Racer.cs" />
-    <Compile Include="Assets\Scripts\Events\GameManager_EventMaster.cs" />
     <Compile Include="Assets\Scripts\Event Triggers\FinishRace.cs" />
-    <Compile Include="Assets\Scripts\GameManager_Main.cs" />
     <Compile Include="Assets\Scripts\Event Triggers\SpeedUpdate.cs" />
+    <Compile Include="Assets\Scripts\Events\GameManager_EventMaster.cs" />
+    <Compile Include="Assets\Scripts\GameManager_Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Earthborn Troll\Shader\Alpha_Texture.shader" />
     <None Include="Assets\Earthborn Troll\Shader\DoubleSided-Light-Spec.shader" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

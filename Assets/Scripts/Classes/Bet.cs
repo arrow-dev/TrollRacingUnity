@@ -8,6 +8,8 @@ namespace Assets.Scripts.Classes
         public GameObject Racer;
         public Punter Bettor;
 
+
+        //Constructor
         public Bet(int amount, GameObject racer, Punter bettor)
         {
             Amount = amount;
@@ -15,6 +17,7 @@ namespace Assets.Scripts.Classes
             Bettor = bettor;
         }
 
+        //Pass in the winner, see if bet was successful and return an int.
         public int Payout(GameObject result)
         {
             if (Racer == result)
@@ -27,6 +30,7 @@ namespace Assets.Scripts.Classes
             }
         }
 
+        //Gets a string containing a description of the bet.
         public string GetDescription()
         {
             if (Amount > 0)

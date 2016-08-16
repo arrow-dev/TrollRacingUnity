@@ -24,6 +24,7 @@ namespace Assets.Scripts.Classes
 
         public void Go()
         {
+            //The NavMeshAgent is a Unity class to move AI characters around. I am giving my racer a destination to move to.
             //Set NavMeshAgent's destination to the Vector3 position of the finish line when start event is triggered.
             MyNavMeshAgent.destination = StartingPosition + new Vector3(85f, 0f);
         }
